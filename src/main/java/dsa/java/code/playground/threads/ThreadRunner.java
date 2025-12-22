@@ -12,7 +12,7 @@ public class ThreadRunner {
         this.threads = threads;
     }
 
-    // @PostConstruct
+    @PostConstruct
     public void startThread() throws InterruptedException{
         Thread thread = new Thread(threads);
         thread.start();
