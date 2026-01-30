@@ -1,5 +1,6 @@
 package dsa.java.code.playground.collections;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;

@@ -4,6 +4,7 @@ package dsa.java.code.playground.collections.list;
 import dsa.java.code.playground.collections.Print;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class Rotatelist {
         print.printArrayList(list, "Rotate List");
         reverseRotateList(list);
         print.printArrayList(list);
+        /* iterator(list); */
     }
 
     private void rotateList(List<Integer> list){
@@ -32,4 +34,13 @@ public class Rotatelist {
     private void reverseRotateList(List<Integer> list){
         Collections.rotate(list, -4);
     }
+
+    
+    private void iterator(List<Integer> list) {
+        Iterator<Integer> ll = list.iterator();
+        while (ll.hasNext()) {
+            log.info("{}",ll.next());
+        }
+    }
+    
 }
