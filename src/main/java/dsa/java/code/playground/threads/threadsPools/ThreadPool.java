@@ -31,11 +31,8 @@ public class ThreadPool {
         for (int i =0; i < 5; i++){
             executorService.execute(new Processor(i));
         }
-
         executorService.shutdown();
-
         log.info("All tasks submitted");
-
         try {
             executorService.awaitTermination(1, TimeUnit.DAYS);
         } catch (InterruptedException e) {

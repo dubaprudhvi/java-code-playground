@@ -27,62 +27,175 @@ public class SynchronizedLocks {
         }
     }
 
-    private List<Integer> list1 =  new ArrayList<>();
+    private List<Integer> list1 = new ArrayList<>();
     private List<Integer> list2 = new ArrayList<>();
 
-    public void stageOne(){
-        synchronized(obj1){
-            try{
-                Thread.sleep(1);
-            }
-            catch(InterruptedException e){
-                e.printStackTrace();
-            }
-            list1.add(random.nextInt(100));
-        }
-    }
+    private void initialMethod(){
 
-    public void stageTwo(){
-        synchronized(obj2){
-            try{
-                Thread.sleep(1);
-            }
-            catch(InterruptedException e){
-                e.printStackTrace();
-            }
-            list2.add(random.nextInt(100));
-        }
-    }
-    
-    public void initialMethod(){
-        long start = System.currentTimeMillis();
-        Thread t1 = new Thread(() -> {
+        long startTime = System.currentTimeMillis();
+        Thread t1 = new Thread(() ->{
             for(int i =0; i<1000; i++){
                 stageOne();
-                stageTwo();
+                stagetwo();
             }
         });
+
         t1.start();
-        
-        Thread t2 = new Thread(() -> {
+
+        Thread t2 = new Thread(() ->{
             for(int i =0; i<1000; i++){
                 stageOne();
-                stageTwo();
+                stagetwo();
             }
         });
+
         t2.start();
 
         try{
             t1.join();
             t2.join();
-        }
-        catch(InterruptedException e){
+        } catch(InterruptedException e){
             e.printStackTrace();
         }
-        long end = System.currentTimeMillis();
-        log.info("List one : {}, List two : {}", list1.size(), list2.size());
-        log.info("Time in milliseconds {}",end-start);
-        
+        long endTime = System.currentTimeMillis();
+
+        log.info("L1 size : {},  L2 size : {}", list1.size(), list2.size());
+        log.info("Time in milli seconds : {}",endTime - startTime);
     }
+
+    private void stageOne() {
+        synchronized (obj1){
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            list1.add(random.nextInt());
+        }
+    }
+
+    private void stagetwo() {
+        synchronized(obj2){
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            list2.add(random.nextInt());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // private List<Integer> list1 =  new ArrayList<>();
+    // private List<Integer> list2 = new ArrayList<>();
+
+    // public void stageOne(){
+    //     synchronized(obj1){
+    //         try{
+    //             Thread.sleep(1);
+    //         }
+    //         catch(InterruptedException e){
+    //             e.printStackTrace();
+    //         }
+    //         list1.add(random.nextInt(100));
+    //     }
+    // }
+
+    // public void stageTwo(){
+    //     synchronized(obj2){
+    //         try{
+    //             Thread.sleep(1);
+    //         }
+    //         catch(InterruptedException e){
+    //             e.printStackTrace();
+    //         }
+    //         list2.add(random.nextInt(100));
+    //     }
+    // }
+    
+    // public void initialMethod(){
+    //     long start = System.currentTimeMillis();
+    //     Thread t1 = new Thread(() -> {
+    //         for(int i =0; i<1000; i++){
+    //             stageOne();
+    //             stageTwo();
+    //         }
+    //     });
+    //     t1.start();
+        
+    //     Thread t2 = new Thread(() -> {
+    //         for(int i =0; i<1000; i++){
+    //             stageOne();
+    //             stageTwo();
+    //         }
+    //     });
+    //     t2.start();
+
+    //     try{
+    //         t1.join();
+    //         t2.join();
+    //     }
+    //     catch(InterruptedException e){
+    //         e.printStackTrace();
+    //     }
+    //     long end = System.currentTimeMillis();
+    //     log.info("List one : {}, List two : {}", list1.size(), list2.size());
+    //     log.info("Time in milliseconds {}",end-start);
+        
+    // }
     
 }

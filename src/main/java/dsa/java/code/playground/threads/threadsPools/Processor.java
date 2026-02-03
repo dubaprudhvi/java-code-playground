@@ -1,12 +1,10 @@
 package dsa.java.code.playground.threads.threadsPools;
 
-import org.springframework.stereotype.Component;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Processor implements Runnable{
-    public int id;
+    private int id;
     public Processor(int id){
         this.id = id;
     }

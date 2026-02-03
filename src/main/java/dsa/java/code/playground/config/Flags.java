@@ -13,4 +13,5 @@ public class Flags {
     private boolean sort;
     private boolean collection;
     private boolean threads;
+    private boolean tricky;
 }
